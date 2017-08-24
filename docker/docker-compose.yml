@@ -1,0 +1,39 @@
+version: "2"
+services:
+  mdocs-api:
+    container_name: mdocs-api
+    build:
+      context: ./mdocs-api
+      dockerfile: Dockerfile
+    networks:
+      mdocs:
+        aliases:
+          - mdocs-api
+    volumes:
+      - ./mdocs-api:/usr/src/mdocs
+      # - /usr/src/app/.bundle
+      # - /usr/src/app/tmp
+      # - /usr/src/app/log
+    env_file:
+      - ./env/mdocs-api.env
+    # ports:
+    #   - "4000:4000"
+    tty: true
+    stdin_open: true
+  nginx:
+    container_name: mdocs-nginx
+    restart: always
+    build: ./nginx
+    depends_on:
+      - mdocs-api
+    networks:
+      mdocs:
+        aliases:
+          - nginx
+    # volumes:
+    #   - ./nginx/config/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+     - "80:80"
+networks:
+  mdocs:
+
