@@ -1,0 +1,5 @@
+/docker/mdocs-api
+/docker/mdocs-front
+/docker/var/postgresql/data
+!.gitkeep
+
