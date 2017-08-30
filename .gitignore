@@ -1,5 +1,6 @@
 /docker/mdocs-api
 /docker/mdocs-front
 /docker/var/postgresql/data
+/docker/var/redis/data
 !.gitkeep
 
